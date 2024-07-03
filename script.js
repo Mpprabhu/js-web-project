@@ -10,6 +10,7 @@ const allSections = document.querySelectorAll('.section');
 const allButtons = document.getElementsByTagName('button');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
 const navLinkAll = document.querySelectorAll('.nav__link');
 const navLinks = document.querySelector('.nav__links');
 const allTabs = document.querySelectorAll('.operations__tab');
@@ -91,6 +92,22 @@ navLinks.addEventListener('click', function (e) {
   }
 });
 
+//Navigaytion Mouse handling
+const handleOver = function (e, opacity) {
+  console.log(this);
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+nav.addEventListener('mouseover', handleOver.bind(0.5));
+nav.addEventListener('mouseout', handleOver.bind(1));
 //Tabbed Component
 tabContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
