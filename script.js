@@ -16,6 +16,7 @@ const navLinks = document.querySelector('.nav__links');
 const allTabs = document.querySelectorAll('.operations__tab');
 const tabContainer = document.querySelector('.operations__tab-container');
 const allTabContents = document.querySelectorAll('.operations__content');
+const imgTargets = document.querySelectorAll('img[data-src]');
 ////////////////////////-------------MODAL WINDOW----------------//////////////////////////////////////////
 
 const openModal = function (e) {
@@ -159,3 +160,23 @@ allSections.forEach(function (section) {
   observer.observe(section);
   section.classList.add('section--hidden');
 });
+
+// Lazy Images Loading
+const imageLoading = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+
+  // for optimization of netweork and for old phones with poor connectivity
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+};
+
+const imgObersever = new IntersectionObserver(imageLoading, {
+  root: null,
+  rootMargin: '200px',
+  threshold: 0,
+});
+
+imgTargets.forEach(image => imgObersever.observe(image));
