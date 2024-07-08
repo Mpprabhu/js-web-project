@@ -47,3 +47,14 @@ closeHeader.style.backgroundColor = 'blue';
 ///Same when closet is given in terms of same element
 const closeh1 = h1.closest('h1');
 closeh1.style.backgroundColor = 'red';
+
+//Without Event deligation NOT A OPTIMIZED WAY OF APPROACH
+
+// navLinkAll.forEach(el =>
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     // console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   })
+// );
